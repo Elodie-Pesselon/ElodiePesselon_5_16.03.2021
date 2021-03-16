@@ -1,0 +1,5 @@
+{
+    "compile-hero.sass-output-directory": "../css",
+    "compile-hero.scss-output-directory": "../css",
+    "compile-hero.watch": ""
+}
