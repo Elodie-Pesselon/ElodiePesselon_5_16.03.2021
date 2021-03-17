@@ -1,2 +1,7 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss"
-
+//@import "./_variable_overrides.scss ";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./Layout/footer";
+@import "./Layout/header";
+@import "./Pages/homePage";
+@import "./Pages/productPage";
+@import "./Pages/shoppingCart";
