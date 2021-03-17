@@ -1,0 +1,21 @@
+.li-footer{
+    margin-top: 30px;
+    color: white;
+}
+
+.a-footer{
+    color: white;
+    &:hover{
+        color: grey;
+    }
+}
+
+.picto-rs{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 22px;
+    color: white;
+    &:hover{
+        color: grey;
+    }
+}

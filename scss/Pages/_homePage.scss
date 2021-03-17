@@ -1,0 +1,41 @@
+// CARROUSEL 
+
+#carouselControls {
+    margin-top: 50px;
+
+}
+
+.w-100{
+    height: 78vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+// CARDS
+
+.card_bg{
+    background-color: rgba($color: #333940, $alpha: 0.8);
+}
+
+.cards{
+    margin-top: 50px;
+}
+
+.card{
+    margin-bottom: 30px;
+}
+
+.card-img-top{
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-body-5{
+    text-align: center;
+}
+
+.card-title-5{
+    margin-top: 70px;
+    font-size: 40px;
+}
