@@ -1,0 +1,49 @@
+.shoppingCart__container{
+    & .shoppingCart__h1{
+        color: white;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    & .shoppingCart__bloc{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        & .shoppingCart__tuile--livraison{
+            background-color: rgba($color: #333940, $alpha: 0.75);
+            width: 55%;
+            padding: 15px;
+            border-radius: 3px;
+            & .shoppingCart__tuile--h2{
+                color: white;
+                margin-bottom: 15px;
+            }
+            & .shoppingCart__tuile--formulaire{
+                margin-bottom: 10px;
+                color: white;
+                & .form-select{
+                    padding-block: 8px;
+                    border-radius: 5px;
+                }
+                & .formulaire__btn{
+                    background: $couleur_btn;
+                    border-color: $couleur_btn;
+                    margin-top: 25px;
+                    &:hover {
+                        background: $couleur_btn--hover;
+                        border-color: $couleur_btn--hover;
+                    }
+                }
+            }
+        }
+        & .shoppingCart__tuile--panier{
+            background-color: rgba($color: #333940, $alpha: 0.75);
+            width: 40%;
+            padding: 15px;
+            border-radius: 3px;
+            & .shoppingCart__tuile--h2{
+                color: white;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

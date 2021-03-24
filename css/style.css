@@ -10044,6 +10044,54 @@ h3 {
   padding-right: 15px;
 }
 
+.shoppingCart__container .shoppingCart__h1 {
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.shoppingCart__container .shoppingCart__bloc {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison {
+  background-color: rgba(51, 57, 64, 0.75);
+  width: 55%;
+  padding: 15px;
+  border-radius: 3px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison .shoppingCart__tuile--h2 {
+  color: white;
+  margin-bottom: 15px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison .shoppingCart__tuile--formulaire {
+  margin-bottom: 10px;
+  color: white;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison .shoppingCart__tuile--formulaire .form-select {
+  padding-block: 8px;
+  border-radius: 5px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison .shoppingCart__tuile--formulaire .formulaire__btn {
+  background: #989B9F;
+  border-color: #989B9F;
+  margin-top: 25px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--livraison .shoppingCart__tuile--formulaire .formulaire__btn:hover {
+  background: #CBCECF;
+  border-color: #CBCECF;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--panier {
+  background-color: rgba(51, 57, 64, 0.75);
+  width: 40%;
+  padding: 15px;
+  border-radius: 3px;
+}
+.shoppingCart__container .shoppingCart__bloc .shoppingCart__tuile--panier .shoppingCart__tuile--h2 {
+  color: white;
+  margin-bottom: 15px;
+}
+
 /*body{
     background: linear-gradient(
         144deg,
