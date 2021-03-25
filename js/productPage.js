@@ -1,25 +1,24 @@
 async function getTeddyId() {
-    let response = await fetch("http://localhost:3000/api/teddies");
+    let response = await fetch("http://localhost:3000/api/teddies/5be9c8541c9d440000665243");
     let data = await response.json();
-    for (const teddyId of data) {
-        main.innerHTML += `
+    main.innerHTML += `
         <div class="row container_product" id="container__product">
             <div class="col-5 bloc_img">
-                <img src="${teddyId.imageUrl}" class="bloc_img-img"  />
+                <img src="${data.imageUrl}" class="bloc_img-img"  />
             </div>
             <div class="col-7 bloc_txt">
-                <h1>${teddyId.name}</h1>
-                <p class="bloc_txt-description">${teddyId.description}</p>
+                <h1>${data.name}</h1>
+                <p class="bloc_txt-description">${data.description}</p>
             <div class="bloc_txt-select">
                 <p class="select-txt">Sélectionnez votre modèle :</p>
                 <select name="model" id="" class="select-text-select">
-                    <option value="">${teddyId.colors[0]}</option>
-                    <option value="">${teddyId.colors[1]}</option>
-                    <option value="">${teddyId.colors[2]}</option>
-                    <option value="">${teddyId.colors[3]}</option>
+                    <option value="">${data.colors[0]}</option>
+                    <option value="">${data.colors[1]}</option>
+                    <option value="">${data.colors[2]}</option>
+                    <option value="">${data.colors[3]}</option>
                 </select>
             </div>
-            <p class="bloc_txt-price">${teddyId.price} €</p>
+            <p class="bloc_txt-price">${data.price} €</p>
             <a
                 class="btn btn-dark bloc_txt-addToShoppingCart"
                 href="./shoppingCart.html"
@@ -41,8 +40,6 @@ async function getTeddyId() {
             </a>
         </div>
       </div>`
-    }
+    
 }
-
 getTeddyId()
-
