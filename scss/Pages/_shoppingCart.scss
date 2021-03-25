@@ -1,33 +1,116 @@
-.shoppingCart__container{
-    & .shoppingCart__h1{
-        color: white;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    & .shoppingCart__bloc{
+.container__shoppingCart{
+    & .bloc__panier{
         display: flex;
         justify-content: space-between;
+        margin-top: 50px;
         margin-bottom: 50px;
-        & .shoppingCart__tuile--livraison{
+        & .card__monPanier{
             background-color: rgba($color: #333940, $alpha: 0.75);
-            width: 55%;
-            padding: 15px;
             border-radius: 3px;
-            & .shoppingCart__tuile--h2{
+            width: 55%;
+            padding: 20px;
+            & .monPanier__h2{
                 color: white;
-                margin-bottom: 15px;
+                border-bottom: white 2px solid;
+                padding-bottom: 7px;
+                font-weight: 200;
             }
-            & .shoppingCart__tuile--formulaire{
-                margin-bottom: 10px;
-                color: white;
-                & .form-select{
-                    padding-block: 8px;
-                    border-radius: 5px;
+            & .monPanier__liste{
+                display: flex;
+                margin-top: 30px;
+                & .liste__img{
+                    width: 35%;
+                    margin-right: 15px;
+                    & .liste__img--img{
+                        width: 100%;
+                    }
                 }
+                & .liste__infosProduits{
+                    color: white;
+                    & .infosProduits__prix{
+                        font-size: 25px;
+                        font-weight: 500;
+                    }
+                    & .infosProduits__nom{
+
+                    }
+                    & .infosProduits__qté{
+                        display: flex;
+                        align-items: center;
+                        & .qté__txt{
+                            margin-bottom: 0px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+        & .card__total{
+            background-color: rgba($color: #333940, $alpha: 0.75);
+            border-radius: 3px;
+            width: 35%;
+            padding: 20px;
+            color: white;
+            height: fit-content;
+            & .total__h2{
+                border-bottom: white 2px solid;
+                padding-bottom: 7px;
+                font-weight: 200;
+            }
+            & .total__sousTotal{
+                display: flex;
+                margin-top: 30px;
+                justify-content: space-between;
+            }
+            & .total__fdl{
+                display: flex;
+                justify-content: space-between;
+                border-bottom: solid 0.5px white;
+            }
+            & .total__total{
+                display: flex;
+                justify-content: space-between;
+                margin-top: 30px; 
+                margin-bottom: 15px;
+                font-weight: 500;
+                font-size: 20px;
+            }
+            & .lien__validationPanier{
+                justify-content: center;
+                & .btn__validationPanier{
+                background: $couleur_btn;
+                border-color: $couleur_btn;
+                &:hover {
+                    background: $couleur_btn--hover;
+                    border-color: $couleur_btn--hover;
+                }
+            }
+            }
+            
+        }
+    }
+    & .bloc__formulaire{
+        background-color: rgba($color: #333940, $alpha: 0.75);
+        border-radius: 3px;
+        padding: 20px;
+        margin-bottom: 50px;
+        color: white;
+        & .formulaire__h2{
+            border-bottom: white 2px solid;
+            padding-bottom: 7px;
+            font-weight: 200;
+        }
+        & .formulaire__formulaire{
+            & .formulaire__case{
+                margin-top: 30px;
+            }
+            & .formulaire__case--btn{
+                text-align: center;
                 & .formulaire__btn{
+                    margin-top: 45px;
+                    margin-bottom: 20px;
                     background: $couleur_btn;
                     border-color: $couleur_btn;
-                    margin-top: 25px;
                     &:hover {
                         background: $couleur_btn--hover;
                         border-color: $couleur_btn--hover;
@@ -35,15 +118,8 @@
                 }
             }
         }
-        & .shoppingCart__tuile--panier{
-            background-color: rgba($color: #333940, $alpha: 0.75);
-            width: 40%;
-            padding: 15px;
-            border-radius: 3px;
-            & .shoppingCart__tuile--h2{
-                color: white;
-                margin-bottom: 15px;
-            }
-        }
+        
     }
 }
+
+

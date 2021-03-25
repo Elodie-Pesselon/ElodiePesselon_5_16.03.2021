@@ -19,7 +19,7 @@ async function getTeddies( ) {
                 </p>
               </div>
               <div>
-                <a class="btn btn-dark" href="page_produit.html" role="button"
+                <a class="btn btn-dark" href="productPage.html?id=${teddy._id}" role="button"
                   >Découvrir cet ourson</a
                 >
               </div>
