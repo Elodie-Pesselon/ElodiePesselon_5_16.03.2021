@@ -10062,31 +10062,51 @@ h3 {
   padding-bottom: 7px;
   font-weight: 200;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste {
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier {
+  margin-bottom: 30px;
+}
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste {
   display: flex;
   margin-top: 30px;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__img {
-  width: 35%;
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__img {
+  width: 100%;
   margin-right: 15px;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__img .liste__img--img {
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__img .liste__img--img {
   width: 100%;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__infosProduits {
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits {
   color: white;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__infosProduits .infosProduits__prix {
-  font-size: 25px;
-  font-weight: 500;
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__nom {
+  font-size: 19px;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__infosProduits .infosProduits__qté {
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__description {
+  font-size: 12px;
+}
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__bloc_prix {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
-.container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste .liste__infosProduits .infosProduits__qté .qté__txt {
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__bloc_prix .infosProduits__prix {
+  font-size: 25px;
+  font-weight: 500;
   margin-bottom: 0px;
-  margin-right: 10px;
+}
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__bloc_prix .btn__supprimer {
+  background-color: transparent;
+  border: transparent;
+}
+.container__shoppingCart .bloc__panier .card__monPanier #contenuPanier .monPanier__liste .liste__infosProduits .infosProduits__bloc_prix .picto__supprimer {
+  font-size: 18px;
+  color: white;
+}
+.container__shoppingCart .bloc__panier .card__monPanier #btn_viderPanier {
+  margin-top: 40px;
+  width: 60%;
+  margin: auto;
 }
 .container__shoppingCart .bloc__panier .card__total {
   background-color: rgba(51, 57, 64, 0.75);
@@ -10169,4 +10189,13 @@ h3 {
 }*/
 body {
   background: linear-gradient(144deg, #df871a 4%, #a568bb 43%, #8f5bfe 92%);
+}
+
+.btn-primary {
+  background: #989B9F;
+  border-color: #989B9F;
+}
+.btn-primary:hover {
+  background: #CBCECF;
+  border-color: #CBCECF;
 }

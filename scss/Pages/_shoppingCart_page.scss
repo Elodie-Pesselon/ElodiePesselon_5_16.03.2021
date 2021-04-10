@@ -15,34 +15,53 @@
                 padding-bottom: 7px;
                 font-weight: 200;
             }
-            & .monPanier__liste{
-                display: flex;
-                margin-top: 30px;
-                & .liste__img{
-                    width: 35%;
-                    margin-right: 15px;
-                    & .liste__img--img{
+            & #contenuPanier{
+                margin-bottom: 30px;
+                & .monPanier__liste{
+                    display: flex;
+                    margin-top: 30px;
+                    & .liste__img{
                         width: 100%;
-                    }
-                }
-                & .liste__infosProduits{
-                    color: white;
-                    & .infosProduits__prix{
-                        font-size: 25px;
-                        font-weight: 500;
-                    }
-                    & .infosProduits__nom{
-
-                    }
-                    & .infosProduits__qté{
-                        display: flex;
-                        align-items: center;
-                        & .qté__txt{
-                            margin-bottom: 0px;
-                            margin-right: 10px;
+                        margin-right: 15px;
+                        & .liste__img--img{
+                            width: 100%;
                         }
                     }
+                    & .liste__infosProduits{
+                        color: white;
+                        
+                        & .infosProduits__nom{
+                            font-size: 19px;
+                        }
+                        & .infosProduits__description{
+                            font-size: 12px;
+                        }
+                        & .infosProduits__bloc_prix{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            & .infosProduits__prix{
+                            font-size: 25px;
+                            font-weight: 500;
+                            margin-bottom: 0px;
+                            }
+                            & .btn__supprimer{
+                                background-color: transparent;
+                                border: transparent;
+                            }
+                            & .picto__supprimer{
+                                font-size: 18px;
+                                color: white;
+                            }
+                        }
+                        
+                    }
                 }
+            }
+            & #btn_viderPanier{
+                margin-top: 40px;
+                width: 60%;
+                margin: auto;
             }
         }
         & .card__total{

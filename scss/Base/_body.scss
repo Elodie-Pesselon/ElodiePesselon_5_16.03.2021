@@ -10,3 +10,12 @@
 body{
   background: $gradient;
 }
+
+.btn-primary{
+  background: $couleur_btn;
+  border-color: $couleur_btn;
+  &:hover {
+    background: $couleur_btn--hover;
+    border-color: $couleur_btn--hover;
+  }
+}
