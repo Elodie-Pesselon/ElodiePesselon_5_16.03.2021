@@ -2,7 +2,7 @@ let contenuPanierElt = document.getElementById("contenuPanier");
 
 let monPanier = getProducts();
 
-console.log(monPanier);
+//console.log(monPanier);
 
 
 // Affichage du panier : 
@@ -40,6 +40,49 @@ for (let i = 0; i < btn__remove.length; i++){
     window.location.href = "./shoppingCart_page.html";
   })
 }
+
+
+// Calculer le montant total du panier 
+
+let prixTotalProduits = [];
+
+for (let i = 0; i < monPanier.length; i++){
+  let prixProduitPanier = monPanier[i].price;
+  prixTotalProduits.push(prixProduitPanier);
+}
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue; 
+const prixTotal = prixTotalProduits.reduce(reducer,0);
+
+console.log(prixTotal);
+
+// Affichage du prix total en html : 
+
+let prixTotalPanier = document.getElementById("prixTotalPanier")
+
+prixTotalPanier.innerHTML = `
+          <h2 class="total__h2">Total</h2>
+          <div class="total__sousTotal">
+            <p class="sousTotal__txt">Sous-total :</p>
+            <p class="sousTotal__prix">${finalPrice(prixTotal).toFixed(2)} €</p>
+          </div>
+          <div class="total__fdl">
+            <p class="fdl__txt">Frais de livraison :</p>
+            <p class="fdl__prix">Offerts</p>
+          </div>
+          <div class="total__total">
+            <p class="total__txt">Total :</p>
+            <p class="total__prix">${finalPrice(prixTotal).toFixed(2)} €</p>
+          </div>
+          <a href="#formulaire" class="lien__validationPanier">
+            <button
+              type="button"
+              class="col-12 btn btn-primary btn__validationPanier"
+            >
+              Valider ma commande
+            </button>
+          </a>
+`
 
 
 

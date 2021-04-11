@@ -1,8 +1,8 @@
 "use strict";
 
 var contenuPanierElt = document.getElementById("contenuPanier");
-var monPanier = getProducts();
-console.log(monPanier); // Affichage du panier : 
+var monPanier = getProducts(); //console.log(monPanier);
+// Affichage du panier : 
 
 for (var i in monPanier) {
   contenuPanierElt.innerHTML += "\n    <div class=\"monPanier__liste\">\n      <div class=\"liste__img\">\n        <img src=\"".concat(monPanier[i].imageUrl, "\" alt=\"\" class=\"liste__img--img\" />\n      </div>\n      <div class=\"liste__infosProduits\">\n        <p class=\"infosProduits__nom\">").concat(monPanier[i].name, "</p>\n        <p class=\"infosProduits__description\">").concat(monPanier[i].description, "</p>\n        <div class=\"infosProduits__bloc_prix\">\n          <p class=\"infosProduits__prix\">").concat(finalPrice(monPanier[i].price).toFixed(2), " \u20AC</p>\n          <button class=\"btn__supprimer\"><i class=\"fas fa-trash-alt picto__supprimer\"></i></button> \n        </div>\n      </div>\n    </div>");
@@ -27,8 +27,25 @@ var _loop = function _loop(_i) {
 
 for (var _i = 0; _i < btn__remove.length; _i++) {
   _loop(_i);
-} //Stocker les saisies du formulaire dans le localStorage
+} // Calculer le montant total du panier 
 
+
+var prixTotalProduits = [];
+
+for (var _i2 = 0; _i2 < monPanier.length; _i2++) {
+  var prixProduitPanier = monPanier[_i2].price;
+  prixTotalProduits.push(prixProduitPanier);
+}
+
+var reducer = function reducer(accumulator, currentValue) {
+  return accumulator + currentValue;
+};
+
+var prixTotal = prixTotalProduits.reduce(reducer, 0);
+console.log(prixTotal); // Affichage du prix total en html : 
+
+var prixTotalPanier = document.getElementById("prixTotalPanier");
+prixTotalPanier.innerHTML = "\n          <h2 class=\"total__h2\">Total</h2>\n          <div class=\"total__sousTotal\">\n            <p class=\"sousTotal__txt\">Sous-total :</p>\n            <p class=\"sousTotal__prix\">".concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <div class=\"total__fdl\">\n            <p class=\"fdl__txt\">Frais de livraison :</p>\n            <p class=\"fdl__prix\">Offerts</p>\n          </div>\n          <div class=\"total__total\">\n            <p class=\"total__txt\">Total :</p>\n            <p class=\"total__prix\">").concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <a href=\"#formulaire\" class=\"lien__validationPanier\">\n            <button\n              type=\"button\"\n              class=\"col-12 btn btn-primary btn__validationPanier\"\n            >\n              Valider ma commande\n            </button>\n          </a>\n"); //Stocker les saisies du formulaire dans le localStorage
 
 var btnSubmit = document.getElementById("btn__formulaire");
 btnSubmit.addEventListener("click", function () {
