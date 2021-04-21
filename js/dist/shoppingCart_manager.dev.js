@@ -24,20 +24,21 @@ function getProducts() {
 function saveProducts(listProducts) {
   var listProductsString = JSON.stringify(listProducts);
   localStorage.setItem("listProducts", listProductsString);
-} //Suppimer un élément du panier 
-
-
-function removeProducts() {
-  var listProducts = getProducts(); //listProducts = listProducts.filter()
-
-  localStorage.removeItem(listProducts);
 } //Supprimer tous les articles du panier
 
 
 function removeAllProducts() {
-  var listProducts = getProducts();
-  localStorage.clear(listProducts);
-  window.location.href = "./shoppingCart_page.html"; //contenuPanierElt.innerHTML += "Votre panier est vide";
+  localStorage.removeItem("listProducts");
+  window.location.href = "./shoppingCart_page.html";
+  var btn__viderPanier = document.getElementById("btn_viderPanier");
+} //Supprimer un seul produit 
 
-  var btn__viderPanier = document.getElementById("btn_viderPanier"); //btn__viderPanier.innerHTML += "Votre panier est vide";
+
+function removeProduct(productIdToRemove) {
+  monPanier = monPanier.filter(function (element) {
+    return element._id !== productIdToRemove;
+  });
+  saveProducts(monPanier);
+  alert("Ce produit a bien été supprimé du panier");
+  window.location.href = "./shoppingCart_page.html";
 }

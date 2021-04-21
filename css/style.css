@@ -10044,8 +10044,11 @@ h3 {
   padding-right: 15px;
 }
 
+.container__shoppingCart #panierVide {
+  display: none;
+}
 .container__shoppingCart .bloc__panier {
-  display: flex;
+  display: none;
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -10151,6 +10154,7 @@ h3 {
   border-color: #CBCECF;
 }
 .container__shoppingCart .bloc__formulaire {
+  display: none;
   background-color: rgba(51, 57, 64, 0.75);
   border-radius: 3px;
   padding: 20px;
@@ -10177,6 +10181,31 @@ h3 {
 .container__shoppingCart .bloc__formulaire .formulaire__formulaire .formulaire__case--btn .formulaire__btn:hover {
   background: #CBCECF;
   border-color: #CBCECF;
+}
+
+#confirmationCommande {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.display {
+  display: flex !important;
+}
+
+.display2 {
+  display: flex !important;
+  justify-content: center;
+  color: white;
+  font-size: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.display3 {
+  display: block !important;
 }
 
 /*body{

@@ -1,11 +1,24 @@
+// ------------------------------ DÉCLARATION DES VARIABLES ------------------------------ //
+
 let contenuPanierElt = document.getElementById("contenuPanier");
 
 let monPanier = getProducts();
 
-//console.log(monPanier);
 
 
-// Affichage du panier : 
+// ------------------------------ AFFICHAGE DU BLOC PANIER ------------------------------ //
+
+
+// ----- Gestion de l'affichage de la page panier en fonction de si le panier est vide ou non ----- //
+
+if (monPanier.length > 0){
+    document.getElementById('blocPanier').classList.add('display');
+} else{
+  document.getElementById('panierVide').classList.add('display2');
+}
+
+
+// ----- Gestion de l'affichage du contenu du panier ----- //
 
 for (let i in monPanier) {
     contenuPanierElt.innerHTML += `
@@ -18,31 +31,14 @@ for (let i in monPanier) {
         <p class="infosProduits__description">${monPanier[i].description}</p>
         <div class="infosProduits__bloc_prix">
           <p class="infosProduits__prix">${finalPrice(monPanier[i].price).toFixed(2)} €</p>
-          <button class="btn__supprimer"><i class="fas fa-trash-alt picto__supprimer"></i></button> 
+          <button class="btn__supprimer" onclick="removeProduct('${monPanier[i]._id}')"><i class="fas fa-trash-alt picto__supprimer"></i></button> 
         </div>
       </div>
     </div>`
 }
 
 
-// Supprimer un article du panier 
-
-let btn__remove = document.querySelectorAll(".btn__supprimer");
-
-for (let i = 0; i < btn__remove.length; i++){
-  btn__remove[i].addEventListener("click", (e) =>{
-    e.preventDefault();
-    let id__productToRemove = monPanier[i]._id;
-    console.log(id__productToRemove);
-    monPanier = monPanier.filter( element => element._id !== id__productToRemove);
-    localStorage.setItem("listProducts", JSON.stringify(monPanier));
-    alert("Ce produit a bien été supprimé du panier");
-    window.location.href = "./shoppingCart_page.html";
-  })
-}
-
-
-// Calculer le montant total du panier 
+// ----- Calcul du montant total du panier ----- //
 
 let prixTotalProduits = [];
 
@@ -56,7 +52,9 @@ const prixTotal = prixTotalProduits.reduce(reducer,0);
 
 console.log(prixTotal);
 
-// Affichage du prix total en html : 
+
+// ----- Affichage du bloc "Total" ----- //
+
 
 let prixTotalPanier = document.getElementById("prixTotalPanier")
 
@@ -78,6 +76,7 @@ prixTotalPanier.innerHTML = `
             <button
               type="button"
               class="col-12 btn btn-primary btn__validationPanier"
+              id= "btnValidationPanier"
             >
               Valider ma commande
             </button>
@@ -85,20 +84,155 @@ prixTotalPanier.innerHTML = `
 `
 
 
+// ------------------------------ GESTION DU FORMULAIRE ------------------------------ //
 
-//Stocker les saisies du formulaire dans le localStorage
+// ----- Affichage du formulaire ----- //
 
-let btnSubmit = document.getElementById("btn__formulaire");
+let btnValidationPanier = document.getElementById("btnValidationPanier");
+let blocFormulaire = document.getElementById("blocFormulaire");
 
-btnSubmit.addEventListener("click", () => {
+btnValidationPanier.addEventListener("click",() => {
+  document.getElementById('blocFormulaire').classList.add('display3');
+  blocFormulaire.innerHTML = `
+    <h2 class="formulaire__h2" id="formulaire">
+      Informations de livraison
+    </h2>
+    <form onsubmit="submitOrder(event)" class="row g-3 formulaire__formulaire">
+      <div class="col-md-6 formulaire__case">
+        <label for="inputSecondName" class="form-label">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputSecondName"
+          required
+        />
+      </div>
+      <div class="col-md-6 formulaire__case">
+        <label for="inputFirstName" class="form-label">Prénom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputFirstName"
+          required
+        />
+      </div>
+      <div class="col-md-6 formulaire__case">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          placeholder="exemple@exemple.com"
+          required
+        />
+      </div>
+      <div class="col-md-6 formulaire__case">
+        <label for="inputTel" class="form-label">N° de téléphone</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="inputTel"
+          placeholder="ex : 06 12 04 12 06"
+          required
+        />
+      </div>
+      <div class="col-12 formulaire__case">
+        <label for="inputAddress" class="form-label">Addresse</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAddress"
+          placeholder="ex : 12 rue du paradis"
+          required
+        />
+      </div>
+      <div class="col-md-6 formulaire__case">
+        <label for="inputZip" class="form-label">Code Postal</label>
+        <input type="text" class="form-control" id="inputZip" />
+      </div>
+      <div class="col-md-6 formulaire__case">
+        <label for="inputCity" class="form-label">Ville</label>
+        <input type="text" class="form-control" id="inputCity" required />
+      </div>
+      <div class="col-12 formulaire__case--btn">
+        <input
+          type="submit"
+          class="btn btn-primary formulaire__btn col-md-4"
+          value="Envoyer"
+          id="btn__formulaire"
+          
+        />
+      </div>
+    </form>`;
+});
+
+
+// ----- Récupération et envoi des données panier et formulaire vers le serveur ----- //
+
+
+async function submitOrder(e) {
+  e.preventDefault();
+  var orderData = {
+    contact: {
+          firstName: document.getElementById("inputFirstName").value,
+          lastName: document.getElementById("inputSecondName").value,
+          address: document.getElementById("inputAddress").value,
+          city: document.getElementById("inputCity").value,
+          email: document.getElementById("inputEmail").value,
+      },
+      products: monPanier,
+    };
+
+  var option = {
+      method: "POST",
+      body: JSON.stringify(orderData),
+      headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+      }
+
+  };
+  let response = await fetch("http://localhost:3000/api/teddies/order",option);
+  let data = await response.json();
+  console.log(data);
+  let btnSubmit = document.getElementById("btn__formulaire");
+  btnSubmit.addEventListener("click", ()=> {
+    //alert('coucou');
+    document.getElementById('confirmationCommande').classList.add('display3');
+    document.getElementById('confirmationCommande').innerHTML = `<p> Merci ${contact.firstName}, votre numéro de commande est le </p>`;
+
+  })
+}
+
+
+
+
+
+
+/*btnSubmit.addEventListener("click", () => {
+  //Stockage des données dans le localStorage
     localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
-    //console.log(document.getElementById("inputSecondName").value)
     localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
     localStorage.setItem("Email", document.getElementById("inputEmail").value);
     localStorage.setItem("Tel", document.getElementById("inputTel").value);
     localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
+  // Affichage du message de confirmation de la commande
+  //document.getElementById('container').classList.add('hidden');
 
-    alert("Merci pour votre commande");
-});
+    alert('coucou');
+});*/
 
 
+/*let firstName = contact.firstName;
+
+function confirmOrder() {
+  localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
+  localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
+  localStorage.setItem("Email", document.getElementById("inputEmail").value);
+  localStorage.setItem("Tel", document.getElementById("inputTel").value);
+  localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
+  document.getElementById('confirmationCommande').classList.add('display3');
+  document.getElementById('confirmationCommande').innerHTML = `<p> Merci ${firstName}, votre numéro de commande est le </p>`
+
+
+}*/

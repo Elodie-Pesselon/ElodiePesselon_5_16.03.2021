@@ -1,39 +1,26 @@
 "use strict";
 
+// ------------------------------ DÉCLARATION DES VARIABLES ------------------------------ //
 var contenuPanierElt = document.getElementById("contenuPanier");
-var monPanier = getProducts(); //console.log(monPanier);
-// Affichage du panier : 
+var monPanier = getProducts(); // ------------------------------ AFFICHAGE DU BLOC PANIER ------------------------------ //
+// ----- Gestion de l'affichage de la page panier en fonction de si le panier est vide ou non ----- //
+
+if (monPanier.length > 0) {
+  document.getElementById('blocPanier').classList.add('display');
+} else {
+  document.getElementById('panierVide').classList.add('display2');
+} // ----- Gestion de l'affichage du contenu du panier ----- //
+
 
 for (var i in monPanier) {
-  contenuPanierElt.innerHTML += "\n    <div class=\"monPanier__liste\">\n      <div class=\"liste__img\">\n        <img src=\"".concat(monPanier[i].imageUrl, "\" alt=\"\" class=\"liste__img--img\" />\n      </div>\n      <div class=\"liste__infosProduits\">\n        <p class=\"infosProduits__nom\">").concat(monPanier[i].name, "</p>\n        <p class=\"infosProduits__description\">").concat(monPanier[i].description, "</p>\n        <div class=\"infosProduits__bloc_prix\">\n          <p class=\"infosProduits__prix\">").concat(finalPrice(monPanier[i].price).toFixed(2), " \u20AC</p>\n          <button class=\"btn__supprimer\"><i class=\"fas fa-trash-alt picto__supprimer\"></i></button> \n        </div>\n      </div>\n    </div>");
-} // Supprimer un article du panier 
-
-
-var btn__remove = document.querySelectorAll(".btn__supprimer");
-
-var _loop = function _loop(_i) {
-  btn__remove[_i].addEventListener("click", function (e) {
-    e.preventDefault();
-    var id__productToRemove = monPanier[_i]._id;
-    console.log(id__productToRemove);
-    monPanier = monPanier.filter(function (element) {
-      return element._id !== id__productToRemove;
-    });
-    localStorage.setItem("listProducts", JSON.stringify(monPanier));
-    alert("Ce produit a bien été supprimé du panier");
-    window.location.href = "./shoppingCart_page.html";
-  });
-};
-
-for (var _i = 0; _i < btn__remove.length; _i++) {
-  _loop(_i);
-} // Calculer le montant total du panier 
+  contenuPanierElt.innerHTML += "\n    <div class=\"monPanier__liste\">\n      <div class=\"liste__img\">\n        <img src=\"".concat(monPanier[i].imageUrl, "\" alt=\"\" class=\"liste__img--img\" />\n      </div>\n      <div class=\"liste__infosProduits\">\n        <p class=\"infosProduits__nom\">").concat(monPanier[i].name, "</p>\n        <p class=\"infosProduits__description\">").concat(monPanier[i].description, "</p>\n        <div class=\"infosProduits__bloc_prix\">\n          <p class=\"infosProduits__prix\">").concat(finalPrice(monPanier[i].price).toFixed(2), " \u20AC</p>\n          <button class=\"btn__supprimer\" onclick=\"removeProduct('").concat(monPanier[i]._id, "')\"><i class=\"fas fa-trash-alt picto__supprimer\"></i></button> \n        </div>\n      </div>\n    </div>");
+} // ----- Calcul du montant total du panier ----- //
 
 
 var prixTotalProduits = [];
 
-for (var _i2 = 0; _i2 < monPanier.length; _i2++) {
-  var prixProduitPanier = monPanier[_i2].price;
+for (var _i = 0; _i < monPanier.length; _i++) {
+  var prixProduitPanier = monPanier[_i].price;
   prixTotalProduits.push(prixProduitPanier);
 }
 
@@ -42,18 +29,92 @@ var reducer = function reducer(accumulator, currentValue) {
 };
 
 var prixTotal = prixTotalProduits.reduce(reducer, 0);
-console.log(prixTotal); // Affichage du prix total en html : 
+console.log(prixTotal); // ----- Affichage du bloc "Total" ----- //
 
 var prixTotalPanier = document.getElementById("prixTotalPanier");
-prixTotalPanier.innerHTML = "\n          <h2 class=\"total__h2\">Total</h2>\n          <div class=\"total__sousTotal\">\n            <p class=\"sousTotal__txt\">Sous-total :</p>\n            <p class=\"sousTotal__prix\">".concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <div class=\"total__fdl\">\n            <p class=\"fdl__txt\">Frais de livraison :</p>\n            <p class=\"fdl__prix\">Offerts</p>\n          </div>\n          <div class=\"total__total\">\n            <p class=\"total__txt\">Total :</p>\n            <p class=\"total__prix\">").concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <a href=\"#formulaire\" class=\"lien__validationPanier\">\n            <button\n              type=\"button\"\n              class=\"col-12 btn btn-primary btn__validationPanier\"\n            >\n              Valider ma commande\n            </button>\n          </a>\n"); //Stocker les saisies du formulaire dans le localStorage
+prixTotalPanier.innerHTML = "\n          <h2 class=\"total__h2\">Total</h2>\n          <div class=\"total__sousTotal\">\n            <p class=\"sousTotal__txt\">Sous-total :</p>\n            <p class=\"sousTotal__prix\">".concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <div class=\"total__fdl\">\n            <p class=\"fdl__txt\">Frais de livraison :</p>\n            <p class=\"fdl__prix\">Offerts</p>\n          </div>\n          <div class=\"total__total\">\n            <p class=\"total__txt\">Total :</p>\n            <p class=\"total__prix\">").concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <a href=\"#formulaire\" class=\"lien__validationPanier\">\n            <button\n              type=\"button\"\n              class=\"col-12 btn btn-primary btn__validationPanier\"\n              id= \"btnValidationPanier\"\n            >\n              Valider ma commande\n            </button>\n          </a>\n"); // ------------------------------ GESTION DU FORMULAIRE ------------------------------ //
+// ----- Affichage du formulaire ----- //
 
-var btnSubmit = document.getElementById("btn__formulaire");
-btnSubmit.addEventListener("click", function () {
-  localStorage.setItem("Nom", document.getElementById("inputSecondName").value); //console.log(document.getElementById("inputSecondName").value)
+var btnValidationPanier = document.getElementById("btnValidationPanier");
+var blocFormulaire = document.getElementById("blocFormulaire");
+btnValidationPanier.addEventListener("click", function () {
+  document.getElementById('blocFormulaire').classList.add('display3');
+  blocFormulaire.innerHTML = "\n    <h2 class=\"formulaire__h2\" id=\"formulaire\">\n      Informations de livraison\n    </h2>\n    <form onsubmit=\"submitOrder(event)\" class=\"row g-3 formulaire__formulaire\">\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputSecondName\" class=\"form-label\">Nom</label>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          id=\"inputSecondName\"\n          required\n        />\n      </div>\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputFirstName\" class=\"form-label\">Pr\xE9nom</label>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          id=\"inputFirstName\"\n          required\n        />\n      </div>\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputEmail\" class=\"form-label\">Email</label>\n        <input\n          type=\"email\"\n          class=\"form-control\"\n          id=\"inputEmail\"\n          placeholder=\"exemple@exemple.com\"\n          required\n        />\n      </div>\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputTel\" class=\"form-label\">N\xB0 de t\xE9l\xE9phone</label>\n        <input\n          type=\"tel\"\n          class=\"form-control\"\n          id=\"inputTel\"\n          placeholder=\"ex : 06 12 04 12 06\"\n          required\n        />\n      </div>\n      <div class=\"col-12 formulaire__case\">\n        <label for=\"inputAddress\" class=\"form-label\">Addresse</label>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          id=\"inputAddress\"\n          placeholder=\"ex : 12 rue du paradis\"\n          required\n        />\n      </div>\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputZip\" class=\"form-label\">Code Postal</label>\n        <input type=\"text\" class=\"form-control\" id=\"inputZip\" />\n      </div>\n      <div class=\"col-md-6 formulaire__case\">\n        <label for=\"inputCity\" class=\"form-label\">Ville</label>\n        <input type=\"text\" class=\"form-control\" id=\"inputCity\" required />\n      </div>\n      <div class=\"col-12 formulaire__case--btn\">\n        <input\n          type=\"submit\"\n          class=\"btn btn-primary formulaire__btn col-md-4\"\n          value=\"Envoyer\"\n          id=\"btn__formulaire\"\n          \n        />\n      </div>\n    </form>";
+}); // ----- Récupération et envoi des données panier et formulaire vers le serveur ----- //
 
+function submitOrder(e) {
+  var orderData, option, response, data, btnSubmit;
+  return regeneratorRuntime.async(function submitOrder$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          e.preventDefault();
+          orderData = {
+            contact: {
+              firstName: document.getElementById("inputFirstName").value,
+              lastName: document.getElementById("inputSecondName").value,
+              address: document.getElementById("inputAddress").value,
+              city: document.getElementById("inputCity").value,
+              email: document.getElementById("inputEmail").value
+            },
+            products: monPanier
+          };
+          option = {
+            method: "POST",
+            body: JSON.stringify(orderData),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            }
+          };
+          _context.next = 5;
+          return regeneratorRuntime.awrap(fetch("http://localhost:3000/api/teddies/order", option));
+
+        case 5:
+          response = _context.sent;
+          _context.next = 8;
+          return regeneratorRuntime.awrap(response.json());
+
+        case 8:
+          data = _context.sent;
+          console.log(data);
+          btnSubmit = document.getElementById("btn__formulaire");
+          btnSubmit.addEventListener("click", function () {
+            //alert('coucou');
+            document.getElementById('confirmationCommande').classList.add('display3');
+            document.getElementById('confirmationCommande').innerHTML = "<p> Merci ".concat(contact.firstName, ", votre num\xE9ro de commande est le </p>");
+          });
+
+        case 12:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+}
+/*btnSubmit.addEventListener("click", () => {
+  //Stockage des données dans le localStorage
+    localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
+    localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
+    localStorage.setItem("Email", document.getElementById("inputEmail").value);
+    localStorage.setItem("Tel", document.getElementById("inputTel").value);
+    localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
+  // Affichage du message de confirmation de la commande
+  //document.getElementById('container').classList.add('hidden');
+
+    alert('coucou');
+});*/
+
+/*let firstName = contact.firstName;
+
+function confirmOrder() {
+  localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
   localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
   localStorage.setItem("Email", document.getElementById("inputEmail").value);
   localStorage.setItem("Tel", document.getElementById("inputTel").value);
   localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
-  alert("Merci pour votre commande");
-});
+  document.getElementById('confirmationCommande').classList.add('display3');
+  document.getElementById('confirmationCommande').innerHTML = `<p> Merci ${firstName}, votre numéro de commande est le </p>`
+
+
+}*/

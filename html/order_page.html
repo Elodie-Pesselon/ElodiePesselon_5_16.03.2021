@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <!-- Title -->
-    <title>Mon panier</title>
+    <title>Merci pour votre commande</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -51,7 +51,7 @@
             <div id="navbarContent" class="navbar-collapse collapse">
               <div>
                 <ul class="navbar-nav menu">
-                  <li class="nav-item">
+                  <li class="nav-item active">
                     <a class="nav-link" href="./index.html">HOME</a>
                   </li>
                   <li class="nav-item">
@@ -61,7 +61,7 @@
               </div>
               <div>
                 <ul class="navbar-nav menu">
-                  <li class="nav-item active">
+                  <li class="nav-item">
                     <a class="nav-link" href="./shoppingCart_page.html"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -126,27 +126,9 @@
         </div>
       </div>
     </header>
-    <main>
-      <div class="container container__shoppingCart" id="container">
-      <p id="panierVide">Votre panier est vide</p>
-      <div class="bloc__panier" id="blocPanier">
-        <div class="card__monPanier">
-          <h2 class="monPanier__h2">Mon panier</h2>
-          <div id="contenuPanier"></div>
-          <div id="btn_viderPanier">
-            <button
-              onclick="removeAllProducts()"
-              class="col-12 btn btn-primary"
-            >
-              Vider le panier
-            </button>
-          </div>
-        </div>
-        <div class="card__total" id="prixTotalPanier"></div> 
-      </div> 
-      <div class="bloc__formulaire" id="blocFormulaire"></div>
-    </div>
-    <div id="confirmationCommande"></div>
+
+    <main class="container" id="main">
+      <div id="confirmationCommande"></div>
     </main>
 
     <footer class="bg-dark">
@@ -224,7 +206,7 @@
             </ul>
           </div>
         </div>
-      </div> -->
+      </div>
     </footer>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -243,8 +225,8 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+
     <script src="../js/helper.js"></script>
-    <script src="../js/shoppingCart_manager.js"></script>
     <script src="../js/shoppingCart_page.js"></script>
   </body>
 </html>
