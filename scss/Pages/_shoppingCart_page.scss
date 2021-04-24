@@ -150,14 +150,19 @@
     }
 }
 
-#confirmationCommande{
-    display: none;
+
+.msg_confirmationCommande {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 
-.hidden{
-    display: none;
-}
+
+
+
 
 .display{
     display: flex !important;
@@ -165,6 +170,7 @@
 
 .display2{
     display: flex !important;
+    text-align: center;
     justify-content: center;
     color: white;
     font-size: 50px;
@@ -176,3 +182,23 @@
     display: block !important;
 }
 
+
+
+@media screen and (max-width: 768px){
+    .container__shoppingCart{
+        & .bloc__panier{
+            flex-direction: column;
+            & .card__monPanier{
+                width: 100%;
+                & .monPanier__liste{
+                    flex-direction: column;
+                }
+            }
+            & .card__total{
+                margin-top: 15px;
+                width: 100%;
+            }
+        }
+    }
+    
+}

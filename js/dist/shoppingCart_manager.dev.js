@@ -30,7 +30,6 @@ function saveProducts(listProducts) {
 function removeAllProducts() {
   localStorage.removeItem("listProducts");
   window.location.href = "./shoppingCart_page.html";
-  var btn__viderPanier = document.getElementById("btn_viderPanier");
 } //Supprimer un seul produit 
 
 

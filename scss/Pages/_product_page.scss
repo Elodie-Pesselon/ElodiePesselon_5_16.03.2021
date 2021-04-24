@@ -43,3 +43,34 @@
     }
   }
 }
+
+
+// Version tablettes et mobiles 
+
+@media screen and (max-width: 768px){
+  .container_product {
+    flex-direction: column;
+    & .bloc_img {
+      max-width: 100%;
+    }
+    & .bloc_txt{
+      max-width: 100%;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+    & .bloc_price{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    & .bloc_txt-price {
+      margin-top: 30px;
+      margin-bottom: 0px;
+    }
+    & .bloc_txt-addToShoppingCart {
+      margin-top: 30px;
+      font-size: 14px;
+      
+    }
+  }
+}

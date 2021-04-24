@@ -1,14 +1,9 @@
-/*body{
-    background: linear-gradient(
-        144deg,
-        rgba(223, 135, 26, 1) 9%,
-        rgba(165, 104, 187, 1) 67%,
-        rgba(143, 91, 254, 1) 100%
-      );
-}*/
 
 body{
   background: $gradient;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .btn-primary{
@@ -18,4 +13,8 @@ body{
     background: $couleur_btn--hover;
     border-color: $couleur_btn--hover;
   }
+}
+
+main{
+  flex-grow: 2;
 }

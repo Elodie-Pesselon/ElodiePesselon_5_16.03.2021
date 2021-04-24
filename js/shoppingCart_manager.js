@@ -29,7 +29,7 @@ function saveProducts(listProducts) {
 function removeAllProducts() {
     localStorage.removeItem("listProducts");
     window.location.href = "./shoppingCart_page.html";
-    let btn__viderPanier = document.getElementById("btn_viderPanier");
+    
 }
 
 //Supprimer un seul produit 

@@ -13,3 +13,14 @@
 .menu{
     align-items: center;
   }
+
+@media screen and (max-width: 768px){
+  #navbarContent{
+    & .navbar-nav{
+      align-items: flex-start;
+    }
+  }
+  .d-flex{
+    margin-bottom: 15px;
+  }
+}

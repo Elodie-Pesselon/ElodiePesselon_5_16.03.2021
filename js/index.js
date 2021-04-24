@@ -1,7 +1,8 @@
+// ------------------------------ GÉNÉRATION AUTOMATIQUE DES PRODUITS SUR LA PAGE D'ACCUEIL ------------------------------//
+
 async function getTeddies( ) {
     let response = await fetch("http://localhost:3000/api/teddies");
-    let data = await response.json();
-    // console.log(data); 
+    let data = await response.json(); 
     let main = document.getElementById("cardContainer");
     for (const teddy of data) {
         console.log(teddy);

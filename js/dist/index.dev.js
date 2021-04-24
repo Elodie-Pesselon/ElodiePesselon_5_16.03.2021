@@ -1,5 +1,6 @@
 "use strict";
 
+// ------------------------------ GÉNÉRATION AUTOMATIQUE DES PRODUITS SUR LA PAGE D'ACCUEIL ------------------------------//
 function getTeddies() {
   var response, data, main, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, teddy;
 
@@ -17,7 +18,6 @@ function getTeddies() {
 
         case 5:
           data = _context.sent;
-          // console.log(data); 
           main = document.getElementById("cardContainer");
           _iteratorNormalCompletion = true;
           _didIteratorError = false;

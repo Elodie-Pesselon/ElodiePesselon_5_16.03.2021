@@ -9966,6 +9966,15 @@ h3 {
   align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  #navbarContent .navbar-nav {
+    align-items: flex-start;
+  }
+
+  .d-flex {
+    margin-bottom: 15px;
+  }
+}
 #carouselControls {
   margin-top: 50px;
 }
@@ -10044,6 +10053,32 @@ h3 {
   padding-right: 15px;
 }
 
+@media screen and (max-width: 768px) {
+  .container_product {
+    flex-direction: column;
+  }
+  .container_product .bloc_img {
+    max-width: 100%;
+  }
+  .container_product .bloc_txt {
+    max-width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+  }
+  .container_product .bloc_price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container_product .bloc_txt-price {
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  .container_product .bloc_txt-addToShoppingCart {
+    margin-top: 30px;
+    font-size: 14px;
+  }
+}
 .container__shoppingCart #panierVide {
   display: none;
 }
@@ -10183,12 +10218,12 @@ h3 {
   border-color: #CBCECF;
 }
 
-#confirmationCommande {
-  display: none;
-}
-
-.hidden {
-  display: none;
+.msg_confirmationCommande {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .display {
@@ -10197,6 +10232,7 @@ h3 {
 
 .display2 {
   display: flex !important;
+  text-align: center;
   justify-content: center;
   color: white;
   font-size: 50px;
@@ -10208,16 +10244,26 @@ h3 {
   display: block !important;
 }
 
-/*body{
-    background: linear-gradient(
-        144deg,
-        rgba(223, 135, 26, 1) 9%,
-        rgba(165, 104, 187, 1) 67%,
-        rgba(143, 91, 254, 1) 100%
-      );
-}*/
+@media screen and (max-width: 768px) {
+  .container__shoppingCart .bloc__panier {
+    flex-direction: column;
+  }
+  .container__shoppingCart .bloc__panier .card__monPanier {
+    width: 100%;
+  }
+  .container__shoppingCart .bloc__panier .card__monPanier .monPanier__liste {
+    flex-direction: column;
+  }
+  .container__shoppingCart .bloc__panier .card__total {
+    margin-top: 15px;
+    width: 100%;
+  }
+}
 body {
   background: linear-gradient(144deg, #df871a 4%, #a568bb 43%, #8f5bfe 92%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .btn-primary {
@@ -10227,4 +10273,8 @@ body {
 .btn-primary:hover {
   background: #CBCECF;
   border-color: #CBCECF;
+}
+
+main {
+  flex-grow: 2;
 }

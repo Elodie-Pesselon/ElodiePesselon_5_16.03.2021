@@ -43,7 +43,7 @@ btnValidationPanier.addEventListener("click", function () {
 }); // ----- Récupération et envoi des données panier et formulaire vers le serveur ----- //
 
 function submitOrder(e) {
-  var orderData, option, response, data, btnSubmit;
+  var orderData, option, response, data;
   return regeneratorRuntime.async(function submitOrder$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -78,43 +78,14 @@ function submitOrder(e) {
         case 8:
           data = _context.sent;
           console.log(data);
-          btnSubmit = document.getElementById("btn__formulaire");
-          btnSubmit.addEventListener("click", function () {
-            //alert('coucou');
-            document.getElementById('confirmationCommande').classList.add('display3');
-            document.getElementById('confirmationCommande').innerHTML = "<p> Merci ".concat(contact.firstName, ", votre num\xE9ro de commande est le </p>");
-          });
+          document.getElementById('container').classList.add('display3');
+          document.getElementById('container').innerHTML = "<p class=\"msg_confirmationCommande\"> Merci ".concat(data.contact.firstName, ", votre num\xE9ro de commande est ").concat(data.orderId, " </p>");
+          localStorage.removeItem("listProducts");
 
-        case 12:
+        case 13:
         case "end":
           return _context.stop();
       }
     }
   });
 }
-/*btnSubmit.addEventListener("click", () => {
-  //Stockage des données dans le localStorage
-    localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
-    localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
-    localStorage.setItem("Email", document.getElementById("inputEmail").value);
-    localStorage.setItem("Tel", document.getElementById("inputTel").value);
-    localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
-  // Affichage du message de confirmation de la commande
-  //document.getElementById('container').classList.add('hidden');
-
-    alert('coucou');
-});*/
-
-/*let firstName = contact.firstName;
-
-function confirmOrder() {
-  localStorage.setItem("Nom", document.getElementById("inputSecondName").value);
-  localStorage.setItem("Prénom", document.getElementById("inputFirstName").value);
-  localStorage.setItem("Email", document.getElementById("inputEmail").value);
-  localStorage.setItem("Tel", document.getElementById("inputTel").value);
-  localStorage.setItem("Adresse", document.getElementById("inputAddress").value);
-  document.getElementById('confirmationCommande').classList.add('display3');
-  document.getElementById('confirmationCommande').innerHTML = `<p> Merci ${firstName}, votre numéro de commande est le </p>`
-
-
-}*/
