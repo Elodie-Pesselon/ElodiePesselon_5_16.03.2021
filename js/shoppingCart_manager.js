@@ -1,4 +1,7 @@
-// Ajout au panier
+// ------------------------------ GESTION DE L'AJOUT, DE L'ENREGISTREMENT ET DE LA SUPPRESSION D'ÉLÉMENTS AU PANIER ------------------------------ //
+
+
+// ---------- Ajout d'un produit au panier ---------- // 
 function addToShoppingCart(product) {
     let listProducts = getProducts(); //récupérer le panier 
     listProducts.push(product); // ajout du produit
@@ -6,7 +9,7 @@ function addToShoppingCart(product) {
 }
 
 
-// lire mon panier 
+// ---------- Affichage du panier ---------- // 
 function getProducts() {
     let listProducts = localStorage.getItem("listProducts");
     if (listProducts == null) {
@@ -17,7 +20,7 @@ function getProducts() {
 }
 
 
-//Sauvegarder mon panier 
+// ---------- Sauvegarde des articles ajoutés au panier ---------- //  
 function saveProducts(listProducts) {
     let listProductsString = JSON.stringify(listProducts);
     localStorage.setItem("listProducts", listProductsString);
@@ -25,14 +28,13 @@ function saveProducts(listProducts) {
 
 
 
-//Supprimer tous les articles du panier
+// ---------- Suppressions de tous les articles ajoutés au panier ---------- //
 function removeAllProducts() {
     localStorage.removeItem("listProducts");
     window.location.href = "./shoppingCart_page.html";
-    
 }
 
-//Supprimer un seul produit 
+// ---------- Suppression d'un seul produit dans le panier ---------- //
 
 function removeProduct(productIdToRemove) {
     monPanier = monPanier.filter( element => element._id !== productIdToRemove);

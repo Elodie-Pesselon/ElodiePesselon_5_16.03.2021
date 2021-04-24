@@ -80,8 +80,7 @@ prixTotalPanier.innerHTML = `
             >
               Valider ma commande
             </button>
-          </a>
-`
+          </a> `
 
 
 // ------------------------------ GESTION DU FORMULAIRE ------------------------------ //

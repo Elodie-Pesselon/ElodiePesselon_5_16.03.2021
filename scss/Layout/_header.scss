@@ -1,3 +1,5 @@
+// CSS version desktop 
+
 .logo {
     padding: 0px;
 }
@@ -12,7 +14,9 @@
 
 .menu{
     align-items: center;
-  }
+}
+
+// CSS version mobile et tablette
 
 @media screen and (max-width: 768px){
   #navbarContent{

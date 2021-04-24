@@ -1,3 +1,4 @@
+// CSS version desktop 
 .container__shoppingCart{
     & #panierVide{
         display: none;
@@ -65,10 +66,6 @@
                 margin-top: 40px;
                 width: 60%;
                 margin: auto;
-                //display: none;
-            }
-            & .display {
-                //display: block !important;
             }
         }
         & .card__total{
@@ -150,7 +147,7 @@
     }
 }
 
-
+// Affichage du message confirmation de commande 
 .msg_confirmationCommande {
     color: white;
     font-size: 25px;
@@ -160,14 +157,12 @@
 }
 
 
-
-
-
-
+// Gestion de l'affichage du bloc panier 
 .display{
     display: flex !important;
 }
 
+// Gestion de l'affichage du message "Votre panier est vide"
 .display2{
     display: flex !important;
     text-align: center;
@@ -178,12 +173,14 @@
     margin-bottom: 100px;
 }
 
+
+// Gestiond de l'affichage du formulaire puis du message de confirmation de commande au clique
 .display3{
     display: block !important;
 }
 
 
-
+// CSS version mobile et tablette
 @media screen and (max-width: 768px){
     .container__shoppingCart{
         & .bloc__panier{
@@ -200,5 +197,4 @@
             }
         }
     }
-    
 }
