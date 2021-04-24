@@ -1,8 +1,13 @@
+// ------------------------------ GÉNÉRATION AUTOMATIQUE DE LA PAGE PRODUIT ------------------------------//
+
+
+// ---------- Récupération des informations correspondantes au produit sélectionné en fonction de son ID --------- //
+
 let searchParam = new URLSearchParams(window.location.search);
 let teddyId = searchParam.get("id");
 let data = null;
 
-
+// ---------- Création d'une fonction permettant de générer la page produit automatiquement --------- // 
 
 async function getTeddyId() {
     let response = await fetch("http://localhost:3000/api/teddies/" + teddyId);
@@ -48,6 +53,7 @@ async function getTeddyId() {
                         </div>
                     </div>
                 </div>`;
+    // Création d'une alerte pour confirmer à l'utilisateur l'ajout du produit au panier 
     let btn_addToCart = document.getElementById("btn_addToCart");
     btn_addToCart.addEventListener("click", (event) => {
         event.preventDefault();
@@ -58,14 +64,13 @@ async function getTeddyId() {
 
 getTeddyId();
 
-
+// Création d'une fonction permettant de générer la liste des couleurs disponibles en fonction de l'ID
+ 
 function colorOptions(colors) {
     let colorList = "";
     for (let i in colors) {
         console.log(colors[i]);
-        //colorList += '<option value="' + colors[i] + '" >' + colors[i] + '</option>';
         colorList += `<option value="${colors[i]}" > ${colors[i]} </option>`;
-
     }
     return colorList;
 }

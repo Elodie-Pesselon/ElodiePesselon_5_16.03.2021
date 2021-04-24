@@ -1,3 +1,5 @@
+// CSS version desktop
+
 .container_product {
   background-color: rgba($color: #333940, $alpha: 0.9);
   padding-top: 20px;
@@ -45,7 +47,7 @@
 }
 
 
-// Version tablettes et mobiles 
+// CSS version tablettes et mobiles 
 
 @media screen and (max-width: 768px){
   .container_product {
