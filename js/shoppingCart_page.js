@@ -11,9 +11,9 @@ let monPanier = getProducts();
 
 // ----- Gestion de l'affichage de la page panier en fonction de si le panier est vide ou non ----- //
 
-if (monPanier.length > 0){
-    document.getElementById('blocPanier').classList.add('display');
-} else{
+if (monPanier.length > 0) {
+  document.getElementById('blocPanier').classList.add('display');
+} else {
   document.getElementById('panierVide').classList.add('display2');
 }
 
@@ -21,7 +21,7 @@ if (monPanier.length > 0){
 // ----- Gestion de l'affichage du contenu du panier ----- //
 
 for (let i in monPanier) {
-    contenuPanierElt.innerHTML += `
+  contenuPanierElt.innerHTML += `
     <div class="monPanier__liste">
       <div class="liste__img">
         <img src="${monPanier[i].imageUrl}" alt="" class="liste__img--img" />
@@ -42,13 +42,13 @@ for (let i in monPanier) {
 
 let prixTotalProduits = [];
 
-for (let i = 0; i < monPanier.length; i++){
+for (let i = 0; i < monPanier.length; i++) {
   let prixProduitPanier = monPanier[i].price;
   prixTotalProduits.push(prixProduitPanier);
 }
 
-const reducer = (accumulator, currentValue) => accumulator + currentValue; 
-const prixTotal = prixTotalProduits.reduce(reducer,0);
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixTotal = prixTotalProduits.reduce(reducer, 0);
 
 console.log(prixTotal);
 
@@ -70,7 +70,7 @@ prixTotalPanier.innerHTML = `
           </div>
           <div class="total__total">
             <p class="total__txt">Total :</p>
-            <p class="total__prix">${finalPrice(prixTotal).toFixed(2)} €</p>
+            <p class="total__prix" id="totalPrix">${finalPrice(prixTotal).toFixed(2)} €</p>
           </div>
           <a href="#formulaire" class="lien__validationPanier">
             <button
@@ -90,7 +90,7 @@ prixTotalPanier.innerHTML = `
 let btnValidationPanier = document.getElementById("btnValidationPanier");
 let blocFormulaire = document.getElementById("blocFormulaire");
 
-btnValidationPanier.addEventListener("click",() => {
+btnValidationPanier.addEventListener("click", () => {
   document.getElementById('blocFormulaire').classList.add('display3');
   blocFormulaire.innerHTML = `
     <h2 class="formulaire__h2" id="formulaire">
@@ -173,34 +173,28 @@ async function submitOrder(e) {
   e.preventDefault();
   var orderData = {
     contact: {
-          firstName: document.getElementById("inputFirstName").value,
-          lastName: document.getElementById("inputSecondName").value,
-          address: document.getElementById("inputAddress").value,
-          city: document.getElementById("inputCity").value,
-          email: document.getElementById("inputEmail").value,
-      },
-      products: monPanier,
-    };
+      firstName: document.getElementById("inputFirstName").value,
+      lastName: document.getElementById("inputSecondName").value,
+      address: document.getElementById("inputAddress").value,
+      city: document.getElementById("inputCity").value,
+      email: document.getElementById("inputEmail").value,
+    },
+    products: monPanier,
+  };
 
   var option = {
-      method: "POST",
-      body: JSON.stringify(orderData),
-      headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-      }
+    method: "POST",
+    body: JSON.stringify(orderData),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }
 
   };
-  let response = await fetch("http://localhost:3000/api/teddies/order",option);
+  let response = await fetch("http://localhost:3000/api/teddies/order", option);
   let data = await response.json();
   console.log(data);
   document.getElementById('container').classList.add('display3');
-  document.getElementById('container').innerHTML = `<p class="msg_confirmationCommande"> Merci ${data.contact.firstName}, votre numéro de commande est ${data.orderId} </p>`;
+  document.getElementById('container').innerHTML = `<p class="msg_confirmationCommande"> Merci ${data.contact.firstName} ! <br> Le montant de votre commande s'élève à ${finalPrice(prixTotal).toFixed(2)}€. <br> Votre numéro de commande est ${data.orderId} </p>`;
   localStorage.removeItem("listProducts");
 }
-
-
-
-
-
-

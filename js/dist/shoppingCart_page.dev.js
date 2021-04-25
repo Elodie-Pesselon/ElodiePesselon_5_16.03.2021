@@ -32,7 +32,7 @@ var prixTotal = prixTotalProduits.reduce(reducer, 0);
 console.log(prixTotal); // ----- Affichage du bloc "Total" ----- //
 
 var prixTotalPanier = document.getElementById("prixTotalPanier");
-prixTotalPanier.innerHTML = "\n          <h2 class=\"total__h2\">Total</h2>\n          <div class=\"total__sousTotal\">\n            <p class=\"sousTotal__txt\">Sous-total :</p>\n            <p class=\"sousTotal__prix\">".concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <div class=\"total__fdl\">\n            <p class=\"fdl__txt\">Frais de livraison :</p>\n            <p class=\"fdl__prix\">Offerts</p>\n          </div>\n          <div class=\"total__total\">\n            <p class=\"total__txt\">Total :</p>\n            <p class=\"total__prix\">").concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <a href=\"#formulaire\" class=\"lien__validationPanier\">\n            <button\n              type=\"button\"\n              class=\"col-12 btn btn-primary btn__validationPanier\"\n              id= \"btnValidationPanier\"\n            >\n              Valider ma commande\n            </button>\n          </a> "); // ------------------------------ GESTION DU FORMULAIRE ------------------------------ //
+prixTotalPanier.innerHTML = "\n          <h2 class=\"total__h2\">Total</h2>\n          <div class=\"total__sousTotal\">\n            <p class=\"sousTotal__txt\">Sous-total :</p>\n            <p class=\"sousTotal__prix\">".concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <div class=\"total__fdl\">\n            <p class=\"fdl__txt\">Frais de livraison :</p>\n            <p class=\"fdl__prix\">Offerts</p>\n          </div>\n          <div class=\"total__total\">\n            <p class=\"total__txt\">Total :</p>\n            <p class=\"total__prix\" id=\"totalPrix\">").concat(finalPrice(prixTotal).toFixed(2), " \u20AC</p>\n          </div>\n          <a href=\"#formulaire\" class=\"lien__validationPanier\">\n            <button\n              type=\"button\"\n              class=\"col-12 btn btn-primary btn__validationPanier\"\n              id= \"btnValidationPanier\"\n            >\n              Valider ma commande\n            </button>\n          </a> "); // ------------------------------ GESTION DU FORMULAIRE ------------------------------ //
 // ----- Affichage du formulaire ----- //
 
 var btnValidationPanier = document.getElementById("btnValidationPanier");
@@ -79,7 +79,7 @@ function submitOrder(e) {
           data = _context.sent;
           console.log(data);
           document.getElementById('container').classList.add('display3');
-          document.getElementById('container').innerHTML = "<p class=\"msg_confirmationCommande\"> Merci ".concat(data.contact.firstName, ", votre num\xE9ro de commande est ").concat(data.orderId, " </p>");
+          document.getElementById('container').innerHTML = "<p class=\"msg_confirmationCommande\"> Merci ".concat(data.contact.firstName, " ! <br> Le montant de votre commande s'\xE9l\xE8ve \xE0 ").concat(finalPrice(prixTotal).toFixed(2), "\u20AC. <br> Votre num\xE9ro de commande est ").concat(data.orderId, " </p>");
           localStorage.removeItem("listProducts");
 
         case 13:
